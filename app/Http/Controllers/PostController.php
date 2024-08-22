@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\School;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -97,16 +98,34 @@ class PostController extends Controller
     public function school_registor()
     {
         $schools=School::all();
-        return view('school_registor', ['schools'=>$schools]);
+        $user = Auth::user();
+        return view('school_registor', ['schools'=>$schools,'user'=>$user]);
     }
-    public function school_store(Request $request)
-    {   
-        // モデルを使ってデータを追加
-        User::where('id',$request->input('user_id'))
-            ->update(['school_id'=>$request->input('univercity_id')]);
+    // public function school_store(Request $request)
+    // {   
+    //     // モデルを使ってデータを追加
+    //     User::where('id',$request->input('id'))
+    //         ->update(['school_id'=>$request->input('school_id')]);
             
-        return view('/');
-    }
+    //     return view('/home');
+    // }
+
+    public function school_store(Request $request)
+{   
+    // リクエストデータのバリデーション
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'school' => 'required|exists:schools,id',
+    ]);
+
+    // ユーザーの school_id を更新
+    User::where('id', $request->input('user_id'))
+        ->update(['school_id' => $request->input('school')]);
+
+    // 更新後にホームページにリダイレクト
+    return redirect()->route('home')->with('success', 'School selection updated successfully!');
+}
+
 
     public function ranking01()
     {
