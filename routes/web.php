@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ranking03_science', [PostController::class, 'ranking03_science'])->name('ranking03_science');
     Route::get('/ranking03_society', [PostController::class, 'ranking03_society'])->name('ranking03_society');
   
+    Route::post('/school-store', [PostController::class, 'school_store'])->name('school_store');
     Route::get('/school-registor', [PostController::class, 'school_registor'])->name('school_registor');
 
 });
