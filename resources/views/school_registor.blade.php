@@ -6,20 +6,20 @@
     </x-slot>
 
 <form method="POST" action="{{ route('school_store') }}">
-    <input type="text" name="user_id" value="1">
+    @csrf
+    <input type="text" name="user_id" value="{{$user->id}}">
         <div class="max-w-4xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
                 <!-- 大学名を列挙 -->
                 <div class="space-y-4">
-                @foreach($schools as $university)
+                @foreach($schools as $school)
                 <label>
-                <input type='radio' name='univercity' value='{{$university->id}}' class="text-lg text-gray-800">{{$university->school_name}}
+                    <input type='radio' name='school' value='{{$school->id}}' class="text-lg text-gray-800">{{$school->school_name}}
                 </label>
-                    
                 @endforeach
                 </div>
         </div>
     <div class="flex items-center justify-center mt-4">
-        <x-primary-button class="ml-4" type="submit">
+        <x-primary-button class="ml-4"  type="submit">
             {{ __('Register') }}
         </x-primary-button>
     </div>
