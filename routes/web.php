@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/myposts', [PostController::class, 'myPosts'])->name('myposts');
 
     Route::get('/ai', [PostController::class, 'ai'])->name('ai');
+    Route::get('/ai_answer', [PostController::class, 'ai_answer'])->name('ai_answer');
+
     Route::get('/exams', [PostController::class, 'exams'])->name('exams');
     Route::get('/score01', [PostController::class, 'score01'])->name('score01');
     Route::get('/score02', [PostController::class, 'score02'])->name('score02');

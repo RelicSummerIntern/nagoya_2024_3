@@ -19,4 +19,13 @@ class School extends Model
 
     # タイムスタンプがない場合は、これを無効にする
     public $timestamps = false;
+
+    /**
+     * リレーションシップ: 大学は何人ものユーザに属する
+     */
+    public function students()
+    {
+        return $this->belongToMany(Student::class, 'school_id');
+    }
+
 }
