@@ -96,10 +96,18 @@ class PostController extends Controller
 
     public function school_registor()
     {
-        $schools=school::all();
+        $schools=School::all();
         return view('school_registor', ['schools'=>$schools]);
-
     }
+    public function school_store(Request $request)
+    {   
+        // モデルを使ってデータを追加
+        User::where('id',$request->input('user_id'))
+            ->update(['school_id'=>$request->input('univercity_id')]);
+            
+        return view('/');
+    }
+
     public function ranking01()
     {
                 return view('ranking01');
