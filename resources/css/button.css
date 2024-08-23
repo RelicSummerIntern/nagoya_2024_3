@@ -1,0 +1,33 @@
+/* ラジオボタンの基本スタイルをリセット */
+input[type="radio"] {
+    display: none; /* ラジオボタンを非表示にする */
+}
+button{
+    max-width: 100%;
+}
+/* ラジオボタンのラベルにボタンのスタイルを適用 */
+label {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #f3f4f6;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    text-align: center;
+}
+
+/* ラベルが選択されたときのスタイル */
+input[type="radio"]:checked + label {
+    background-color: #aaa;
+    color: white;
+}
+
+/* ラベルにホバーしたときのスタイル */
+label:hover {
+    background-color: #e2e8f0;
+    transform: scale(1.05); /* サイズを大きくする */
+}
+
