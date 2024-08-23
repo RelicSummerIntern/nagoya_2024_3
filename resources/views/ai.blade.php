@@ -44,7 +44,7 @@
     </div>
 
     <script>
-document.getElementById('send-button').addEventListener('click', function() {
+    document.getElementById('send-button').addEventListener('click', function() {
     const message = document.getElementById('message').value.trim();
 
     if (message === '') {
@@ -59,12 +59,14 @@ document.getElementById('send-button').addEventListener('click', function() {
         }, 1500); 
         
     } 
-    else if (message === '微分の定義は') {
+    else if (message === '運動の三法則') {
         // 1.5秒待ってからページ遷移を実行
         setTimeout(function() {
             window.location.href = '/ai_answer2';
         }, 1500); 
-        
+    
+        // 入力されたメッセージをセッションストレージに保存
+        sessionStorage.setItem('userMessage', message);    
     } 
 
     else {

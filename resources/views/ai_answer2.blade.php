@@ -25,7 +25,7 @@
                         <div class="flex justify-end items-center h-full">
                             <div class="relative max-w-xs p-4 bg-blue-100 rounded-lg shadow-sm text-right">
                                 <p class="font-semibold text-gray-800">あなた</p>
-                                <p class="text-gray-700 mt-2">kokugo定義は？</p>
+                                <p class="text-gray-700 mt-2">運動の三法則</p>
                                 <span class="absolute bottom-1 right-2 text-xs text-gray-500">{{ now()->format('H:i') }}</span>
                             </div>
                         </div>
@@ -34,14 +34,26 @@
                             <div class="relative max-w-xs p-4 bg-gray-100 rounded-lg shadow-sm">
                                 <p class="font-semibold text-gray-800">physicAI</p>
                                 <p class="text-gray-700 mt-2">
-                                    微分の定義は、ある関数 <i>𝑓(𝑥)</i> の点 <i>𝑥=𝑎</i> における変化の割合を表すもので、次のように定義されます。<br><br>
-                                    <i>𝑓′(𝑎) = lim⁡<sub>ℎ→0</sub> (𝑓(𝑎+ℎ)−𝑓(𝑎)) / ℎ</i><br><br>
-                                    ここで、<i>𝑓′(𝑎)</i> は関数 <i>𝑓(𝑥)</i> の点 <i>𝑥=𝑎</i> における微分係数（導関数）を表し、これは <i>𝑥</i> の値が <i>𝑎</i> からわずかに変化したときの <i>𝑓(𝑥)</i> の変化の割合を意味します。<br><br>
-                                    この定義から、微分は関数のグラフの接線の傾きを表すとも解釈できます。つまり、微分を通じて関数の変化の速度を測ることができます。<br><br><br><br><br>
-                                </p>
+                                運動の三法則は、アイザック・ニュートンが提唱した物理学の基本的な法則で、物体の運動の原理を説明するものです。これらの法則は「ニュートンの運動の法則」とも呼ばれ、以下の三つから成ります。<br><br>
+
+                                <strong>第一法則（慣性の法則）</strong><br>
+                                「すべての物体は、外から力が加わらない限り、静止している物体は静止し続け、運動している物体は等速直線運動を続ける。」<br><br>
+                                これは、物体に外力が加わらない限り、その物体はその状態（静止または等速直線運動）を維持しようとするという法則です。これを慣性と呼びます。<br><br>
+
+                                <strong>第二法則（運動の法則）</strong><br>
+                                「物体に力が加わると、その物体はその力の向きに比例した加速度を持ち、加速度は物体の質量に反比例する。」<br><br>
+                                この法則は数式で表すと、F = ma となります。ここで、F は力、m は物体の質量、a は加速度を表します。この法則により、力と加速度の関係を明確に示しています。<br><br>
+
+                                <strong>第三法則（作用・反作用の法則）</strong><br>
+                                「ある物体が別の物体に力を加えると、その物体も同じ大きさで反対方向の力を受ける。」<br><br>
+                                この法則は、一般に「作用・反作用の法則」として知られています。例えば、手で壁を押すと、壁も同じ大きさの力で手を押し返しているということです。<br><br>
+
+                                これらの三法則は、古典力学の基礎を形成し、物体の運動を理解するための重要な原理となっています。
+                                </p><br><br><br><br>
                                 <span class="absolute bottom-1 right-2 text-xs text-gray-500">{{ now()->format('H:i') }}</span>
                             </div>
                         </div>
+
                     </div>
                 @endif
             </div>
@@ -63,50 +75,39 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.getElementById('send-button').addEventListener('click', function() {
-            const message = document.getElementById('message').value;
+    document.getElementById('send-button').addEventListener('click', function() {
+    const message = document.getElementById('message').value.trim();
 
-            if (message.trim() === '') {
-                alert('メッセージを入力してください。');
-                return;
-            }
+    if (message === '') {
+        alert('メッセージを入力してください。');
+        return;
+    }
 
-            axios.post('/chat/send', { message })
-                .then(response => {
-                    // 応答をメッセージリストに追加
-                    const chatMessages = document.getElementById('chat-messages');
-                    const newMessage = document.createElement('div');
-                    newMessage.className = 'flex items-start justify-end';
-                    newMessage.innerHTML = `
-                        <div class="relative max-w-xs p-4 bg-blue-100 rounded-lg shadow-sm text-right">
-                            <p class="font-semibold text-gray-800">あなた</p>
-                            <p class="text-gray-700 mt-2">${message}</p>
-                            <span class="absolute bottom-1 right-2 text-xs text-gray-500">${new Date().toLocaleTimeString().slice(0, 5)}</span>
-                        </div>
-                    `;
-                    chatMessages.appendChild(newMessage);
+    if (message === '微分の定義は？') {
+        // 1.5秒待ってからページ遷移を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer';
+        }, 1500); 
+        
+    } 
+    else if (message === '運動の三法則') {
+        // 1.5秒待ってからページ遷移を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer2';
+        }, 1500); 
+    
+        // 入力されたメッセージをセッションストレージに保存
+        sessionStorage.setItem('userMessage', message);    
+    } 
 
-                    // AIからの応答をメッセージリストに追加
-                    const aiMessage = document.createElement('div');
-                    aiMessage.className = 'flex items-start';
-                    aiMessage.innerHTML = `
-                        <div class="relative max-w-xs p-4 bg-gray-100 rounded-lg shadow-sm">
-                            <p class="font-semibold text-gray-800">AI</p>
-                            <p class="text-gray-700 mt-2">${response.data.reply}</p>
-                            <span class="absolute bottom-1 right-2 text-xs text-gray-500">${new Date().toLocaleTimeString().slice(0, 5)}</span>
-                        </div>
-                    `;
-                    chatMessages.appendChild(aiMessage);
-
-                    // メッセージをクリア
-                    document.getElementById('message').value = '';
-                })
-                .catch(error => {
-                    console.error('エラーが発生しました:', error);
-                });
-        });
-    </script>
+    else {
+        // 他のメッセージの場合、通常の処理を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer_not';
+        }, 1500); 
+    }
+});
+</script>
 
 </x-app-layout>
