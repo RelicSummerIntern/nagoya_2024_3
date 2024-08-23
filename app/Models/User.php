@@ -43,17 +43,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function school()
+    public function schools()
     {
         return $this->hasOne(School::class, 'school_id');
     }
 
-    /**
-     * リレーションシップ:
-     * 学生はいくつかの模試を受ける
-     */
     public function exams()
     {
-        return $this->belongsToMany(Exam::class, 'middle', 'student_id', 'exam_id');
+        
+        return $this->belongToMany(Exams::class,'middle', 'user_id','exam_id');
     }
 }
