@@ -48,7 +48,8 @@ class RegisteredUserController extends Controller
 
         session()->flash('success', '会員登録に成功しました。');
 
-        // return redirect(RouteServiceProvider::HOME);
-        return redirect('/school-registor');
+        return redirect('/school-register');
     }
+
+    
 }

@@ -1,7 +1,8 @@
+@vite(['resources/css/button.css'])
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            模試を選択してください
+            受験した模試を選択してください
         </h2>
     </x-slot>
 
@@ -19,7 +20,7 @@
                     第3回模試
                 </a>
 -->
-
+<!-- 
                 <a href="{{ route('score01') }}" class="bg-white border-b border-gray-200 p-6 block w-full text-center
                 font-semibold text-gray-800 hover:bg-gray-100 text-decoration-none">
                     第1回模試
@@ -31,9 +32,18 @@
                 <a href="{{ route('score03') }}" class="bg-white border-b border-gray-200 p-6 block w-full text-center
                 font-semibold text-gray-800 hover:bg-gray-100 text-decoration-none">
                     第3回模試
-                </a>
+                </a> 
+-->
+                @foreach($exams as $exam)
+                    <form method="POST" action="{{ route('score_enter') }}">
+                        @csrf
+                        <input type="hidden" name="exam_id" value="{{ $exam->id }}">
+                        <button type="submit">{{ $exam->exam_name }}</button>
+                    </form>
+                @endforeach
 
             </div>
         </div>
     </div>
 </x-app-layout>
+

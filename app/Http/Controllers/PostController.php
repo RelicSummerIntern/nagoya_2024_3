@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\School;
+use App\Models\User;
+use App\Models\Exam;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 
 class PostController extends Controller
 {
@@ -80,11 +84,58 @@ class PostController extends Controller
                 return view('ai_answer');
     }
     
-    public function exams()
+    public function exams()//模試選択画面へ
     {
-                return view('exams');
+        
+        $exams = Exam::all();
+
+        return view('exams',['exams'=>$exams,]);
+
     }
 
+    public function score_enter(Request $request)//模試のidを受け取って、スコア入力画面へ
+    {
+        // $request->validate([
+        //     'exam' => 'required|exists:exams,id'
+        // ]);
+        $request->all();
+        $exam=Exam::find($request->exam_id); 
+        $subjects=Subject::all();
+
+        return view('score01', ['subjects'=>$subjects,'exam'=>$exam]);
+    }
+
+
+    public function ranking(Request $request)//登録をしたデータを受け取って、ランキングへ
+    {
+        // // リクエストデータのバリデーション
+        // $request->validate([
+        //     'exam' => 'required|exists:exams,', // テーブル名とカラム名を指定
+        // ]);
+    
+        // $subjects=Subject::all('subject_name');
+        // User::where('id', $user_id)
+        // ->update(['school_id' => $request->input('exam')]);
+        $exams=Exam::all();
+
+        $user_id = Auth::id();
+
+        
+        foreach ($scoresData as $scoreData) {
+            Score::create([
+                'user_id' => $userId,
+                'exam_id' => $examId,
+                'subject_id' => $scoreData['subject_id'],
+                'score' => $scoreData['score']
+            ]);
+        }
+
+        $scoresData = $request->input('scores');
+        
+        return view('ranking01',['exams'=>$exams]);
+    }
+
+    
     public function score01()
     {
                 return view('score01');
@@ -98,12 +149,29 @@ class PostController extends Controller
                 return view('score03');
     }
 
-    public function school_registor()
+    public function school_register()
     {
         $schools=School::all();
-        return view('school_registor', ['schools'=>$schools]);
-
+        return view('school_register', ['schools'=>$schools]);
     }
+
+    public function school_store(Request $request)
+{   
+    // リクエストデータのバリデーション
+    $request->validate([
+        'school' => 'required|exists:schools,id',
+    ]);
+    $user_id = Auth::id();
+    // ユーザーの school_id を更新
+    User::where('id', $user_id)
+        ->update(['school_id' => $request->input('school')]);
+
+    session()->flash('success', '希望する大学を登録しました。');
+
+    return redirect(RouteServiceProvider::HOME);
+}
+
+
     public function ranking01()
     {
                 return view('ranking01');
