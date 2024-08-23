@@ -23,7 +23,7 @@ class Exam extends Model
      */
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'middle', 'exam_id', 'student_id');
+        return $this->belongsToMany(Student::class, 'middle', 'student_id','exam_id');
     }
 
     # タイムスタンプがない場合は、これを無効にする
