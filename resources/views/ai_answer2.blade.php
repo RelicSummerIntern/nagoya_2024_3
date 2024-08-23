@@ -102,7 +102,7 @@
     } 
 
     else {
-        // 他のメッセージの場合、通常の処理を実行
+        // 他のメッセージの場合、通常の処理を実行ff
         setTimeout(function() {
             window.location.href = '/ai_answer_not';
         }, 1500); 
