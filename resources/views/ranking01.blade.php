@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            第一回模試のランキング(総合)
-        </h2>
-    </x-slot>
+
 
     <div class="max-w-4xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
         <div class="bg-white shadow-md rounded-lg p-6">
@@ -27,8 +23,8 @@
                 <a href="/ranking01_society" class="bg-yellow-500 text-white px-4 py-2 rounded-lg text-center focus:outline-none focus:ring-2 focus:ring-yellow-500">
                     社会
                 </a>
-
             </div>
+
 
             <!-- ランキングテーブル -->
             <table class="min-w-full divide-y divide-gray-200">
@@ -54,9 +50,10 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             山田 太郎(仮)
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            480点(仮)
+                        <td class="text-lg font-semibold text-gray-800">
+                            {{ $totalScore }}点
                         </td>
+
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -74,11 +71,11 @@
             </table>
         </div>
     </div>
-        
-            <!-- 戻るボタン -->
-            <div class="flex justify-center mt-6">
-                <x-nav-link :href="route('exams')" :active="request()->routeIs('post.index')" style="font-size: 15px; text-decoration: underline; color: #4a5568;">
-                    {{ __('戻る') }}
-                </x-nav-link>
-            </div>
+
+    <!-- 戻るボタン -->
+    <div class="flex justify-center mt-6">
+        <x-nav-link :href="route('exams')" :active="request()->routeIs('post.index')" style="font-size: 15px; text-decoration: underline; color: #4a5568;">
+            {{ __('戻る') }}
+        </x-nav-link>
+    </div>
 </x-app-layout>

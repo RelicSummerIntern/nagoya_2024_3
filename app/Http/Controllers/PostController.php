@@ -104,9 +104,20 @@ class PostController extends Controller
         return view('school_registor', ['schools'=>$schools]);
 
     }
-    public function ranking01()
+    public function ranking01(Request $request)
     {
-                return view('ranking01');
+        // フォームからのデータを取得
+        $eigo = $request->input('eigo', 0);
+        $kokugo = $request->input('kokugo', 0);
+        $suugaku = $request->input('suugaku', 0);
+        $rika = $request->input('rika', 0);
+        $shakai = $request->input('shakai', 0);
+    
+        // 点数を合計
+        $totalScore = $eigo + $kokugo + $suugaku + $rika + $shakai;
+    
+        // 合計点数をビューに渡す
+        return view('ranking01', ['totalScore' => $totalScore]);
     }
     public function ranking01_japanese()
     {
