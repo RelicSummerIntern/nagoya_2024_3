@@ -63,50 +63,39 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.getElementById('send-button').addEventListener('click', function() {
-            const message = document.getElementById('message').value;
+    document.getElementById('send-button').addEventListener('click', function() {
+    const message = document.getElementById('message').value.trim();
 
-            if (message.trim() === '') {
-                alert('メッセージを入力してください。');
-                return;
-            }
+    if (message === '') {
+        alert('メッセージを入力してください。');
+        return;
+    }
 
-            axios.post('/chat/send', { message })
-                .then(response => {
-                    // 応答をメッセージリストに追加
-                    const chatMessages = document.getElementById('chat-messages');
-                    const newMessage = document.createElement('div');
-                    newMessage.className = 'flex items-start justify-end';
-                    newMessage.innerHTML = `
-                        <div class="relative max-w-xs p-4 bg-blue-100 rounded-lg shadow-sm text-right">
-                            <p class="font-semibold text-gray-800">あなた</p>
-                            <p class="text-gray-700 mt-2">${message}</p>
-                            <span class="absolute bottom-1 right-2 text-xs text-gray-500">${new Date().toLocaleTimeString().slice(0, 5)}</span>
-                        </div>
-                    `;
-                    chatMessages.appendChild(newMessage);
+    if (message === '微分の定義は？') {
+        // 1.5秒待ってからページ遷移を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer';
+        }, 1500); 
+        
+    } 
+    else if (message === '運動の三法則') {
+        // 1.5秒待ってからページ遷移を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer2';
+        }, 1500); 
+    
+        // 入力されたメッセージをセッションストレージに保存
+        sessionStorage.setItem('userMessage', message);    
+    } 
 
-                    // AIからの応答をメッセージリストに追加
-                    const aiMessage = document.createElement('div');
-                    aiMessage.className = 'flex items-start';
-                    aiMessage.innerHTML = `
-                        <div class="relative max-w-xs p-4 bg-gray-100 rounded-lg shadow-sm">
-                            <p class="font-semibold text-gray-800">AI</p>
-                            <p class="text-gray-700 mt-2">${response.data.reply}</p>
-                            <span class="absolute bottom-1 right-2 text-xs text-gray-500">${new Date().toLocaleTimeString().slice(0, 5)}</span>
-                        </div>
-                    `;
-                    chatMessages.appendChild(aiMessage);
-
-                    // メッセージをクリア
-                    document.getElementById('message').value = '';
-                })
-                .catch(error => {
-                    console.error('エラーが発生しました:', error);
-                });
-        });
-    </script>
+    else {
+        // 他のメッセージの場合、通常の処理を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer_not';
+        }, 1500); 
+    }
+});
+</script>
 
 </x-app-layout>
