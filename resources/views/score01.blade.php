@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            模試の点数を入力してください
+            {{$exam->exam_name}}の点数を入力してください
         </h2>
     </x-slot>
 

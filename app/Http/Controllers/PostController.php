@@ -89,21 +89,20 @@ class PostController extends Controller
         
         $exams = Exam::all();
 
-
         return view('exams',['exams'=>$exams,]);
 
     }
 
     public function score_enter(Request $request)//模試のidを受け取って、スコア入力画面へ
     {
-        $request->validate([
-            'exam' => 'required|exists:exams,id'
-        ]);
-        
-        $exams=Exam::find($request->input('exam_id')); 
+        // $request->validate([
+        //     'exam' => 'required|exists:exams,id'
+        // ]);
+        $request->all();
+        $exam=Exam::find($request->exam_id); 
         $subjects=Subject::all();
 
-        return view('score01', ['subjects'=>$subjects,'exams'=>$exams]);
+        return view('score01', ['subjects'=>$subjects,'exam'=>$exam]);
     }
 
 
