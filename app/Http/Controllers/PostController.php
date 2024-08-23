@@ -83,6 +83,15 @@ class PostController extends Controller
     {
                 return view('ai_answer');
     }
+    public function ai_answer2()
+    {
+                return view('ai_answer2');
+    }
+    public function ai_answer_not()
+    {
+                return view('ai_answer_not');
+    }
+    
     
     public function exams()//模試選択画面へ
     {
@@ -172,10 +181,21 @@ class PostController extends Controller
 }
 
 
-    public function ranking01()
-    {
-                return view('ranking01');
-    }
+public function ranking01(Request $request)
+{
+    // フォームからのデータを取得
+    $eigo = $request->input('eigo', 0);
+    $kokugo = $request->input('kokugo', 0);
+    $suugaku = $request->input('suugaku', 0);
+    $rika = $request->input('rika', 0);
+    $shakai = $request->input('shakai', 0);
+
+    // 点数を合計
+    $totalScore = $eigo + $kokugo + $suugaku + $rika + $shakai;
+
+    // 合計点数をビューに渡す
+    return view('ranking01', ['totalScore' => $totalScore]);
+}
     public function ranking01_japanese()
     {
                 return view('ranking01_japanese');

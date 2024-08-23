@@ -45,18 +45,37 @@
 
     <script>
     document.getElementById('send-button').addEventListener('click', function() {
-        const message = document.getElementById('message').value;
+    const message = document.getElementById('message').value.trim();
 
-        if (message.trim() === '') {
-            alert('メッセージを入力してください。');
-            return;
-        }
+    if (message === '') {
+        alert('メッセージを入力してください。');
+        return;
+    }
 
-        // 待ってからページ遷移を実行
+    if (message === '微分の定義は？') {
+        // 1.5秒待ってからページ遷移を実行
         setTimeout(function() {
             window.location.href = '/ai_answer';
         }, 1500); 
-    });
+        
+    } 
+    else if (message === '運動の三法則') {
+        // 1.5秒待ってからページ遷移を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer2';
+        }, 1500); 
+    
+        // 入力されたメッセージをセッションストレージに保存
+        sessionStorage.setItem('userMessage', message);    
+    } 
+
+    else {
+        // 他のメッセージの場合、通常の処理を実行
+        setTimeout(function() {
+            window.location.href = '/ai_answer_not';
+        }, 1500); 
+    }
+});
 </script>
 
 
