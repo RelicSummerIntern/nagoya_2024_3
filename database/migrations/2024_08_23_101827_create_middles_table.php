@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('middles', function (Blueprint $table) {
             $table->id(); #中間ID
-            $table->foreignId('student_id')->constrained(); #ユーザIDを参照
+            $table->foreignId('score_id')->constrained(); #スコアIDを参照
+            $table->foreignId('user_id')->constrained(); #ユーザIDを参照
             $table->foreignId('exam_id')->constrained(); #模試IDを参照
         });
     }

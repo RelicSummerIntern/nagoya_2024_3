@@ -79,6 +79,15 @@ class PostController extends Controller
     {
                 return view('ai_answer');
     }
+    public function ai_answer2()
+    {
+                return view('ai_answer2');
+    }
+    public function ai_answer_not()
+    {
+                return view('ai_answer_not');
+    }
+    
     
     public function exams()
     {

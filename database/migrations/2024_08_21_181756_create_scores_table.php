@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id(); #点数ID
-            $table->foreignId('middle_id')->constrained(); #中間IDを参照
             $table->foreignId('subject_id')->constrained(); #教科IDを参照
             $table->integer('score'); #点数
         });

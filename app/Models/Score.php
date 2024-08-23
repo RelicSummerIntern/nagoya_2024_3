@@ -5,23 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Score extends Model
 {
     use HasFactory;
 
     # どのテーブルに関連しているかを指定
-    protected $table = 'subjects';
+    protected $table = 'students';
 
     # マスアサインメントを許可する属性
     protected $fillable = [
-        'subject_name',
+        'subject_id', // 教科ID
+        'score'  // 点数
     ];
 
-    # タイムスタンプがない場合は、これを無効にする
-    public $timestamps = false;
-
-    public function exams()
+    public function subjects()
     {
-        return $this->hasMany(Score::class, 'score_id');
+        return $this->belongsToMany(Subject::class, 'subject_id');
     }
 }

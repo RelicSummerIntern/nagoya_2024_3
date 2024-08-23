@@ -48,7 +48,7 @@
                             1
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            山田 太郎(仮)
+                            山田 太郎
                         </td>
                         <td class="text-lg font-semibold text-gray-800">
                             {{ $totalScore }}点
@@ -60,10 +60,10 @@
                             2
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            鈴木 一郎(仮)
+                            鈴木 一郎
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            36点(仮)
+                            200点
                         </td>
                     </tr>
                     <!-- ここに他のランキングデータが続きます -->
