@@ -34,18 +34,14 @@
                     第3回模試
                 </a> 
 -->
-            <form method="POST" action="{{ route('score_enter') }}">
-                    @csrf
-                    <div class="space-y-4">
-                        @foreach($exams as $exam)
-                        <label>
-                            <input type='submit' name='exam_id' class="mr-2">
-                            {{$exam->exam_name}}
-                        </label>
-                        @endforeach
-                    </div>
-                    </div>
-                </form>
+                @foreach($exams as $exam)
+                    <form method="POST" action="{{ route('score_enter') }}">
+                        @csrf
+                        <input type="hidden" name="exam_id" value="{{ $exam->id }}">
+                        <button type="submit">{{ $exam->exam_name }}</button>
+                    </form>
+                @endforeach
+
             </div>
         </div>
     </div>
