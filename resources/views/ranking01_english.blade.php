@@ -51,10 +51,10 @@
                             1
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            山田 太郎(仮)
+                            河合 生稀
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            40点(仮)
+                            90点
                         </td>
                     </tr>
                     <tr>

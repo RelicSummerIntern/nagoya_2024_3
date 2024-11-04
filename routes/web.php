@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/ai', [PostController::class, 'ai'])->name('ai');
     Route::get('/ai_answer', [PostController::class, 'ai_answer'])->name('ai_answer');
+    Route::get('/ai_answer2', [PostController::class, 'ai_answer2'])->name('ai_answer2');
+    Route::get('/ai_answer_not', [PostController::class, 'ai_answer_not'])->name('ai_answer_not');
 
     Route::get('/exams', [PostController::class, 'exams'])->name('exams');
     Route::post('/score_enter', [PostController::class, 'score_enter'])->name('score_enter');
@@ -50,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/score02', [PostController::class, 'score02'])->name('score02');
     Route::get('/score03', [PostController::class, 'score03'])->name('score03');
 
-    Route::get('/ranking01', [PostController::class, 'ranking'])->name('ranking01');
+    Route::match(['get', 'post'], '/ranking01', [PostController::class, 'ranking01'])->name('ranking01');
     Route::get('/ranking01_japanese', [PostController::class, 'ranking01_japanese'])->name('ranking01_japanese');
     Route::get('/ranking01_math', [PostController::class, 'ranking01_math'])->name('ranking01_math');
     Route::get('/ranking01_english', [PostController::class, 'ranking01_english'])->name('ranking01_english');

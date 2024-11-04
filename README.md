@@ -33,6 +33,8 @@ docker-compose up -d
 docker-compose exec laravel.test npm run dev
 ```
 
+https://laraweb.net/knowledge/288/
+
 ## 停止する方法
 
 ```sh

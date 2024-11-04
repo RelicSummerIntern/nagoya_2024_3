@@ -21,23 +21,13 @@
                     @endforeach
                 @else
                     <div class="space-y-4">
-                        <!-- User's message -->
-                        <div class="flex justify-end items-center h-full">
-                            <div class="relative max-w-xs p-4 bg-blue-100 rounded-lg shadow-sm text-right">
-                                <p class="font-semibold text-gray-800">あなた</p>
-                                <p class="text-gray-700 mt-2">微分の定義は？</p>
-                                <span class="absolute bottom-1 right-2 text-xs text-gray-500">{{ now()->format('H:i') }}</span>
-                            </div>
-                        </div>
+
                         <!-- AI's response -->
                         <div class="flex items-start">
                             <div class="relative max-w-xs p-4 bg-gray-100 rounded-lg shadow-sm">
                                 <p class="font-semibold text-gray-800">physicAI</p>
                                 <p class="text-gray-700 mt-2">
-                                    微分の定義は、ある関数 <i>𝑓(𝑥)</i> の点 <i>𝑥=𝑎</i> における変化の割合を表すもので、次のように定義されます。<br><br>
-                                    <i>𝑓′(𝑎) = lim⁡<sub>ℎ→0</sub> (𝑓(𝑎+ℎ)−𝑓(𝑎)) / ℎ</i><br><br>
-                                    ここで、<i>𝑓′(𝑎)</i> は関数 <i>𝑓(𝑥)</i> の点 <i>𝑥=𝑎</i> における微分係数（導関数）を表し、これは <i>𝑥</i> の値が <i>𝑎</i> からわずかに変化したときの <i>𝑓(𝑥)</i> の変化の割合を意味します。<br><br>
-                                    この定義から、微分は関数のグラフの接線の傾きを表すとも解釈できます。つまり、微分を通じて関数の変化の速度を測ることができます。<br><br><br><br><br>
+                                    すみません。よくわかりません。<br>
                                 </p>
                                 <span class="absolute bottom-1 right-2 text-xs text-gray-500">{{ now()->format('H:i') }}</span>
                             </div>
